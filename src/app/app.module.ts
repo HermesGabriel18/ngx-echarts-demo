@@ -6,10 +6,8 @@ import { AppComponent } from './app.component';
 
 import { NgxEchartsModule } from 'ngx-echarts';
 
-import { PieChartComponent } from './pie-chart/pie-chart.component';
-
 @NgModule({
-  declarations: [AppComponent, PieChartComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

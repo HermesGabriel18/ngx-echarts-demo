@@ -21,4 +21,10 @@
   [series]="seriesData"
 ></app-bar-chart>
 
-<app-line-chart *ngIf="selectedType === 'line'"></app-line-chart>
+<app-line-chart
+  *ngIf="selectedType === 'line'"
+  [isLoading]="isLoading"
+  [name]="name"
+  [legend]="legendData"
+  [series]="seriesData"
+></app-line-chart>

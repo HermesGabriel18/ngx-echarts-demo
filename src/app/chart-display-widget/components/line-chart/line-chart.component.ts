@@ -31,6 +31,11 @@ export class LineChartComponent {
         type: 'value',
       },
     ],
+    dataZoom: [
+      {
+        type: 'inside',
+      },
+    ],
     series: [
       {
         name: 'X-1',

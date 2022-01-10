@@ -1,3 +1,13 @@
-<app-pie-chart [legend]="legendData" [series]="seriesData"></app-pie-chart>
-<!-- <app-line-chart></app-line-chart>
-<app-bar-chart></app-bar-chart> -->
+<app-pie-chart
+  *ngIf="type === 'pie'"
+  [name]="name"
+  [legend]="legendData"
+  [series]="seriesData"
+></app-pie-chart>
+<!-- <app-line-chart></app-line-chart> -->
+<app-bar-chart
+  *ngIf="type === 'bar'"
+  [name]="name"
+  [legend]="legendData"
+  [series]="seriesData"
+></app-bar-chart>

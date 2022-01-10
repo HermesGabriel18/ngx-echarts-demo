@@ -1,45 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { EChartsOption } from 'echarts';
+import { ThemeOption } from 'ngx-echarts';
+import { BarChartSeries } from './bar-chart.interface';
+import { optionsSimpleMapper } from './mapper';
 
 @Component({
   selector: 'app-bar-chart',
   templateUrl: './bar-chart.component.html',
   styleUrls: ['./bar-chart.component.scss'],
 })
-export class BarChartComponent {
+export class BarChartComponent implements OnInit {
+  @Input() theme: string | ThemeOption = '';
+  @Input() name: string = 'Bar';
+  @Input() legend: string[] = [];
+  @Input() series: BarChartSeries[] = [];
+
   options: any = {
     tooltip: {
       trigger: 'axis',
       axisPointer: {
         type: 'shadow',
       },
-    },
-    legend: {
-      data: ['BAR'],
-    },
-    xAxis: {
-      data: [
-        'A',
-        'B',
-        'C',
-        'D',
-        'E',
-        'F',
-        'G',
-        'H',
-        'I',
-        'J',
-        'K',
-        'L',
-        'M',
-        'N',
-        'O',
-        'P',
-        'Q',
-        'R',
-        'S',
-        'T',
-      ],
     },
     yAxis: {
       type: 'value',
@@ -49,15 +30,13 @@ export class BarChartComponent {
         type: 'inside',
       },
     ],
-    series: [
-      {
-        name: 'BAR',
-        type: 'bar',
-        data: [
-          220, 182, 191, 234, 290, 330, 310, 123, 442, 321, 90, 149, 210, 122,
-          133, 334, 198, 123, 125, 220,
-        ],
-      },
-    ],
   };
+
+  ngOnInit(): void {
+    const options = optionsSimpleMapper(this.name, this.series);
+    this.options = {
+      ...this.options,
+      ...options,
+    };
+  }
 }

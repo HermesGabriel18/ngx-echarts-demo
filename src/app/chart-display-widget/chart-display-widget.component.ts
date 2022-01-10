@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chart-display-widget.component.scss'],
 })
 export class ChartDisplayWidgetComponent {
-  type: string = 'pie';
+  name: string = 'Testing';
+  type: string = 'bar';
   legendData = [
     'rose1',
     'rose2',

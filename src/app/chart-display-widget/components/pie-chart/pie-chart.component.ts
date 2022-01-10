@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { EChartsOption } from 'echarts';
 import { ThemeOption } from 'ngx-echarts';
 import { legendMapper, seriesMapper } from './mapper';
-import { PieChartSeries, roseType } from './pie-chart-interface';
+import { PieChartSeries, roseType } from './pie-chart.interface';
 
 @Component({
   selector: 'app-pie-chart',

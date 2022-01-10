@@ -1,4 +1,4 @@
-import { PieChartSeries } from './pie-chart-interface';
+import { PieChartSeries } from './pie-chart.interface';
 
 export const legendMapper = (legendData: string[]) => {
   return {

@@ -6,9 +6,22 @@ import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { LineChartComponent } from './components/line-chart/line-chart.component';
 import { BarChartComponent } from './components/bar-chart/bar-chart.component';
+import { FormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
-  declarations: [ChartDisplayWidgetComponent, PieChartComponent, LineChartComponent, BarChartComponent],
-  imports: [CommonModule, ChartDisplayWidgetRoutingModule, NgxEchartsModule],
+  declarations: [
+    ChartDisplayWidgetComponent,
+    PieChartComponent,
+    LineChartComponent,
+    BarChartComponent,
+  ],
+  imports: [
+    CommonModule,
+    ChartDisplayWidgetRoutingModule,
+    FormsModule,
+    NgSelectModule,
+    NgxEchartsModule,
+  ],
 })
 export class ChartDisplayWidgetModule {}

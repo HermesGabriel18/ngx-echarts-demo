@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-chart-display-widget',
@@ -6,8 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chart-display-widget.component.scss'],
 })
 export class ChartDisplayWidgetComponent {
+  isLoading: boolean = false;
   name: string = 'Testing';
-  type: string = 'bar';
+  chartTypes = ['pie', 'bar', 'line'];
+  selectedType: string = 'bar';
   legendData = [
     'rose1',
     'rose2',
@@ -28,4 +30,11 @@ export class ChartDisplayWidgetComponent {
     { value: 30, name: 'rose7' },
     { value: 40, name: 'rose8' },
   ];
+
+  onChange() {
+    this.isLoading = true;
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 5000);
+  }
 }

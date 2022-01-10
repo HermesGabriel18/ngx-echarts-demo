@@ -10,6 +10,7 @@ import { PieChartSeries, roseType } from './pie-chart.interface';
   styleUrls: ['./pie-chart.component.scss'],
 })
 export class PieChartComponent implements OnInit {
+  @Input() isLoading: boolean = false;
   @Input() theme: string | ThemeOption = '';
   @Input() name: string = 'Area';
   @Input() roseType: roseType = roseType.AREA;

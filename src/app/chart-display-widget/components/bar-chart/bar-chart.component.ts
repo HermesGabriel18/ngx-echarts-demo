@@ -10,6 +10,7 @@ import { optionsSimpleMapper } from './mapper';
   styleUrls: ['./bar-chart.component.scss'],
 })
 export class BarChartComponent implements OnInit {
+  @Input() isLoading: boolean = false;
   @Input() theme: string | ThemeOption = '';
   @Input() name: string = 'Bar';
   @Input() legend: string[] = [];

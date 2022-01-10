@@ -12,18 +12,11 @@ export class PieChartComponent {
   theme: string | ThemeOption = '';
   coolTheme = CoolTheme;
   options: EChartsOption = {
-    title: {
-      text: "Nightingale's Rose Diagram",
-      subtext: 'Mocking Data',
-      left: 'center',
-    },
     tooltip: {
       trigger: 'item',
       formatter: '{a} <br/>{b} : {c} ({d}%)',
     },
     legend: {
-      left: 'center',
-      bottom: 'bottom',
       data: [
         'rose1',
         'rose2',

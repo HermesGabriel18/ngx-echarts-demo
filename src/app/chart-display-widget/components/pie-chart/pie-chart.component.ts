@@ -1,49 +1,42 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { EChartsOption } from 'echarts';
 import { ThemeOption } from 'ngx-echarts';
-import { CoolTheme } from '../../themes';
+import { legendMapper, seriesMapper } from './mapper';
+import { PieChartSeries, roseType } from './pie-chart-interface';
 
 @Component({
   selector: 'app-pie-chart',
   templateUrl: './pie-chart.component.html',
   styleUrls: ['./pie-chart.component.scss'],
 })
-export class PieChartComponent {
-  theme: string | ThemeOption = '';
-  coolTheme = CoolTheme;
+export class PieChartComponent implements OnInit {
+  @Input() theme: string | ThemeOption = '';
+  @Input() name: string = 'Area';
+  @Input() roseType: roseType = roseType.AREA;
+  @Input() legend: string[] = [];
+  @Input() series: PieChartSeries[] = [];
+
   options: EChartsOption = {
     tooltip: {
       trigger: 'item',
       formatter: '{a} <br/>{b} : {c} ({d}%)',
     },
-    legend: {
-      data: [
-        'rose1',
-        'rose2',
-        'rose3',
-        'rose4',
-        'rose5',
-        'rose6',
-        'rose7',
-        'rose8',
-      ],
-    },
     calculable: true,
-    series: {
-      name: 'area',
-      type: 'pie',
-      radius: [30, 110],
-      roseType: 'area',
-      data: [
-        { value: 10, name: 'rose1' },
-        { value: 5, name: 'rose2' },
-        { value: 15, name: 'rose3' },
-        { value: 25, name: 'rose4' },
-        { value: 20, name: 'rose5' },
-        { value: 35, name: 'rose6' },
-        { value: 30, name: 'rose7' },
-        { value: 40, name: 'rose8' },
-      ],
-    },
   };
+
+  ngOnInit(): void {
+    const legend = legendMapper(this.legend);
+    const series = seriesMapper(this.series);
+    this.options = {
+      ...this.options,
+      ...legend,
+      series: {
+        name: this.name,
+        type: 'pie',
+        radius: [30, 110],
+        roseType: this.roseType,
+        ...series,
+      },
+    };
+  }
 }

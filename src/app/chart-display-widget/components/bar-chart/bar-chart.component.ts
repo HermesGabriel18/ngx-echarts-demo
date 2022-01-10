@@ -14,6 +14,9 @@ export class BarChartComponent {
         type: 'shadow',
       },
     },
+    legend: {
+      data: ['BAR'],
+    },
     xAxis: {
       data: [
         'A',
@@ -48,6 +51,7 @@ export class BarChartComponent {
     ],
     series: [
       {
+        name: 'BAR',
         type: 'bar',
         data: [
           220, 182, 191, 234, 290, 330, 310, 123, 442, 321, 90, 149, 210, 122,

@@ -42,7 +42,7 @@ export class BarChartComponent implements OnChanges {
 
   private _loadData() {
     const options = this.advanced
-      ? this._ngxChartsService.advancedOptionsMapper(this.series)
+      ? this._ngxChartsService.advancedBarOptionsMapper(this.series)
       : this._ngxChartsService.barSimpleOptionsMapper(this.name, this.series);
     this.options = {
       ...this.options,

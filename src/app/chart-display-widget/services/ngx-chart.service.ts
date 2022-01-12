@@ -87,7 +87,7 @@ export class NgxChartService {
     };
   };
 
-  advancedOptionsMapper = (seriesData: NgxChartSeries[]) => {
+  advancedBarOptionsMapper = (seriesData: NgxChartSeries[]) => {
     const categories = this._removeDuplicateEntries(seriesData, 'category').map(
       (item) => item.category
     ) as string[];
@@ -108,7 +108,7 @@ export class NgxChartService {
         xAxis: {
           data: names,
         },
-        series: this._buildSeries(categories, seriesData),
+        series: this._buildBarSeries(categories, seriesData),
       }),
     };
   };
@@ -122,7 +122,7 @@ export class NgxChartService {
     );
   }
 
-  private _buildSeries(
+  private _buildBarSeries(
     categories: string[],
     arr: NgxChartSeries[]
   ): NgxChartSeries[] {

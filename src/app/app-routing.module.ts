@@ -9,6 +9,13 @@ const routes: Routes = [
         (m) => m.ChartDisplayWidgetModule
       ),
   },
+  {
+    path: 'theme',
+    loadChildren: () =>
+      import('./theme-widget/theme-widget.module').then(
+        (m) => m.ThemeWidgetModule
+      ),
+  },
 ];
 
 @NgModule({

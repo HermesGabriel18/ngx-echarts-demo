@@ -1,20 +1,21 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { EChartsOption } from 'echarts';
+import { Component, Input, OnChanges } from '@angular/core';
 import { ThemeOption } from 'ngx-echarts';
-import { BarChartSeries } from './bar-chart.interface';
-import { optionsSimpleMapper } from './mapper';
+import { NgxChartSeries } from '../../models';
+import { NgxChartService } from '../../services';
 
 @Component({
   selector: 'app-bar-chart',
   templateUrl: './bar-chart.component.html',
   styleUrls: ['./bar-chart.component.scss'],
 })
-export class BarChartComponent implements OnInit {
+export class BarChartComponent implements OnChanges {
   @Input() isLoading: boolean = false;
+  @Input() advanced: boolean = false;
   @Input() theme: string | ThemeOption = '';
-  @Input() name: string = 'Bar';
-  @Input() legend: string[] = [];
-  @Input() series: BarChartSeries[] = [];
+  @Input() colors: string[] = [];
+  @Input() title = '';
+  @Input() name: string = 'Line';
+  @Input() series: NgxChartSeries[] = [];
 
   options: any = {
     tooltip: {
@@ -33,10 +34,25 @@ export class BarChartComponent implements OnInit {
     ],
   };
 
-  ngOnInit(): void {
-    const options = optionsSimpleMapper(this.name, this.series);
+  constructor(private _ngxChartsService: NgxChartService) {}
+
+  ngOnChanges(): void {
+    this._loadData();
+  }
+
+  private _loadData() {
+    const options = this.advanced
+      ? this._ngxChartsService.advancedOptionsMapper(this.series)
+      : this._ngxChartsService.barSimpleOptionsMapper(this.name, this.series);
     this.options = {
       ...this.options,
+      ...(this.colors.length > 0 && {
+        color: [...this.colors],
+      }),
+      title: {
+        text: this.title,
+        left: 'center',
+      },
       ...options,
     };
   }

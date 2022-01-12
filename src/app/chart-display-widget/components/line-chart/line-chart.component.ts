@@ -1,29 +1,26 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { EChartsOption } from 'echarts';
+import { Component, Input, OnChanges } from '@angular/core';
 import { ThemeOption } from 'ngx-echarts';
-import { LineChartSeries } from './line-chart.interface';
-import { optionsSimpleMapper } from './mapper';
+import { NgxChartSeries } from '../../models';
+import { NgxChartService } from '../../services';
 
 @Component({
   selector: 'app-line-chart',
   templateUrl: './line-chart.component.html',
   styleUrls: ['./line-chart.component.scss'],
 })
-export class LineChartComponent implements OnInit {
+export class LineChartComponent implements OnChanges {
   @Input() isLoading: boolean = false;
   @Input() theme: string | ThemeOption = '';
+  @Input() colors: string[] = [];
+  @Input() title = '';
   @Input() name: string = 'Line';
-  @Input() legend: string[] = [];
-  @Input() series: LineChartSeries[] = [];
+  @Input() series: NgxChartSeries[] = [];
 
   options: any = {
     tooltip: {
       trigger: 'axis',
       axisPointer: {
         type: 'cross',
-        label: {
-          backgroundColor: '#6a7985',
-        },
       },
     },
     dataZoom: {
@@ -34,10 +31,26 @@ export class LineChartComponent implements OnInit {
     },
   };
 
-  ngOnInit(): void {
-    const options = optionsSimpleMapper(this.name, this.series);
+  constructor(private _ngxChartsService: NgxChartService) {}
+
+  ngOnChanges(): void {
+    this._loadData();
+  }
+
+  private _loadData() {
+    const options = this._ngxChartsService.lineSimpleOptionsMapper(
+      this.name,
+      this.series
+    );
     this.options = {
       ...this.options,
+      ...(this.colors.length > 0 && {
+        color: [...this.colors],
+      }),
+      title: {
+        text: this.title,
+        left: 'center',
+      },
       ...options,
     };
   }

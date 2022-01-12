@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ThemeOption } from 'ngx-echarts';
+import { CoolTheme } from './themes';
 
 @Component({
   selector: 'app-chart-display-widget',
@@ -10,6 +12,8 @@ export class ChartDisplayWidgetComponent {
   name: string = 'Testing';
   chartTypes = ['pie', 'bar', 'line'];
   selectedType: string = 'bar';
+  theme: string | ThemeOption = '';
+  coolTheme = CoolTheme;
   legendData = [
     'rose1',
     'rose2',

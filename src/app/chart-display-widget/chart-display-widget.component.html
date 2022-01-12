@@ -1,3 +1,14 @@
+<div class="button-groups">
+  <button (click)="theme = ''" nz-button nzType="default">default</button>
+  <button (click)="theme = 'dark'" nz-button nzType="default">dark</button>
+  <button (click)="theme = 'macarons'" nz-button nzType="default">
+    macarons(theme file)
+  </button>
+  <button (click)="theme = coolTheme" nz-button nzType="default">
+    cool(theme object)
+  </button>
+</div>
+
 <ng-select
   [items]="chartTypes"
   [(ngModel)]="selectedType"
@@ -9,6 +20,7 @@
   *ngIf="selectedType === 'pie'"
   [isLoading]="isLoading"
   [name]="name"
+  [theme]="theme"
   [legend]="legendData"
   [series]="seriesData"
 ></app-pie-chart>
@@ -17,6 +29,7 @@
   *ngIf="selectedType === 'bar'"
   [isLoading]="isLoading"
   [name]="name"
+  [theme]="theme"
   [series]="seriesData"
 ></app-bar-chart>
 
@@ -24,5 +37,6 @@
   *ngIf="selectedType === 'line'"
   [isLoading]="isLoading"
   [name]="name"
+  [theme]="theme"
   [series]="seriesData"
 ></app-line-chart>

@@ -33,8 +33,12 @@ export class PieChartComponent implements OnChanges {
   }
 
   private _loadData() {
-    const legend = this._ngxChartsService.pieLegendMapper(this.legend);
-    const series = this._ngxChartsService.pieSeriesMapper(this.series);
+    const options = this._ngxChartsService.pieSimpleOptionsMapper(
+      this.legend,
+      this.series,
+      this.name,
+      this.roseType
+    );
     this.options = {
       ...this.options,
       ...(this.colors.length > 0 && {
@@ -44,14 +48,7 @@ export class PieChartComponent implements OnChanges {
         text: this.title,
         left: 'center',
       },
-      ...legend,
-      series: {
-        name: this.name,
-        type: 'pie',
-        radius: [30, 110],
-        roseType: this.roseType,
-        ...series,
-      },
+      ...options,
     };
   }
 }

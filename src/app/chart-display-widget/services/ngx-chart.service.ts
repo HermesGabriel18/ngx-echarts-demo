@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { NgxChartSeries } from '../models';
+import { NgxChartSeries, NgxPieChartRoseType } from '../models';
 
 @Injectable({
   providedIn: 'root',
@@ -7,7 +7,12 @@ import { NgxChartSeries } from '../models';
 export class NgxChartService {
   constructor() {}
 
-  pieLegendMapper = (legendData: string[]) => {
+  pieSimpleOptionsMapper = (
+    legendData: string[],
+    seriesData: NgxChartSeries[],
+    name: string,
+    roseType: NgxPieChartRoseType
+  ) => {
     return {
       ...(legendData && {
         legend: {
@@ -16,13 +21,14 @@ export class NgxChartService {
           data: [...legendData],
         },
       }),
-    };
-  };
-
-  pieSeriesMapper = (seriesData: NgxChartSeries[]) => {
-    return {
       ...(seriesData && {
-        data: [...seriesData],
+        series: {
+          name,
+          type: 'pie',
+          radius: [30, 110],
+          roseType,
+          data: [...seriesData],
+        },
       }),
     };
   };
